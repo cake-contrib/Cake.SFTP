@@ -13,17 +13,25 @@
         <PackageProjectUrl>https://github.com/JeroenVandezande/Cake.SFTP</PackageProjectUrl>
         <RepositoryUrl>https://github.com/JeroenVandezande/Cake.SFTP</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageTags>Cake Script Build SFTP</PackageTags>
+        <PackageTags>cake-addin Cake Script Build SFTP</PackageTags>
         <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <IncludeSymbols>True</IncludeSymbols>
         <Title>Cake.SFTP</Title>
+        <PackageIcon>cake-contrib-medium.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Cake.Core" Version="3.0.0" />
       <PackageReference Include="SSH.NET" Version="2020.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="cake-contrib-medium.png">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
     </ItemGroup>
 
 </Project>
