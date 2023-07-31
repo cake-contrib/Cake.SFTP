@@ -18,7 +18,7 @@ public static class CakeSFTP
         try
         {
             client.Connect();
-            return from f in client.ListDirectory(remoteDirectory) select f.Name;
+            return from f in client.ListDirectory(remoteDirectory) where f.Name != "." select f.Name;
         }
         catch
         {

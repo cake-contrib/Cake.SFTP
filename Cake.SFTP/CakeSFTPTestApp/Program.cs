@@ -18,6 +18,12 @@ m.Setup(l => l.Log.Write(It.IsAny<Verbosity>(), It.IsAny<LogLevel>(), It.IsAny<S
     .Callback((Verbosity a, LogLevel b, String c, Object[] d) => Console.WriteLine(c));
 
 
-CakeSFTP.SFTPDeleteFile(m.Object, s ,"Thunderbolt.xml");
+//CakeSFTP.SFTPDeleteFile(m.Object, s ,"Thunderbolt.xml");
 
-//CakeSFTP.SFTPUploadFile(m.Object, s, "/Users/jeroenvandezande/Documents/repos/GSD/Thundertbolt/thunderbolt-firmware/Thunderbolt.xml", "Thunderbolt.xml");
+//CakeSFTP.SFTPUploadFile(m.Object, s, "/Users/jeroenvandezande/Documents/repos/GSD/Thundertbolt/thunderbolt-firmware/Thunderbolt.xml", "Thunderbolt2.xml");
+
+var fls = CakeSFTP.SFTPListAllFiles(m.Object, s);
+foreach (var f in fls)
+{
+    Console.WriteLine(f);
+}
