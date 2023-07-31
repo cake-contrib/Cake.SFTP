@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.SFTP", "Cake.SFTP\Cake.SFTP.csproj", "{9810CC21-1348-496D-A424-AB9E76B02E1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CakeSFTPTestApp", "CakeSFTPTestApp\CakeSFTPTestApp.csproj", "{FE09CBCA-F7D2-4FAA-99DD-595DFF466602}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9810CC21-1348-496D-A424-AB9E76B02E1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9810CC21-1348-496D-A424-AB9E76B02E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9810CC21-1348-496D-A424-AB9E76B02E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9810CC21-1348-496D-A424-AB9E76B02E1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE09CBCA-F7D2-4FAA-99DD-595DFF466602}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE09CBCA-F7D2-4FAA-99DD-595DFF466602}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE09CBCA-F7D2-4FAA-99DD-595DFF466602}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE09CBCA-F7D2-4FAA-99DD-595DFF466602}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
