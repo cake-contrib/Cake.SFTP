@@ -20,6 +20,7 @@
         <IncludeSymbols>True</IncludeSymbols>
         <Title>Cake.SFTP</Title>
         <PackageIcon>cake-contrib-medium.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -28,8 +29,16 @@
       <PackageReference Include="SSH.NET" Version="2020.0.2" />
     </ItemGroup>
 
+    <PropertyGroup>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
     <ItemGroup>
         <None Include="cake-contrib-medium.png">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+        <None Include="../../README.md">
             <Pack>True</Pack>
             <PackagePath></PackagePath>
         </None>

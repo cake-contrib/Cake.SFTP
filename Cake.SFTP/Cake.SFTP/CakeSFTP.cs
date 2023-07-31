@@ -6,9 +6,24 @@ using Renci.SshNet;
 
 namespace Cake.SFTP;
 
+/// <summary>
+/// Contains functionality for working with an SFTP server.
+/// </summary>
 [CakeAliasCategory("SFTP")]
 public static class CakeSFTP
 {
+    /// <summary>
+    /// Gets all files from the SFTP server
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// var remotefiles = SFTPListAllFiles(settings, "uploads/current");
+    /// </code>
+    /// </example>
+    /// <param name="cakecontext">The context.</param>
+    /// <param name="settings">The settings file for the SFTP server.</param>
+    /// <param name="remoteDirectory">The folder on the SFTP server where you want to get the contents from.</param>
+    /// <returns>A list of the files on the server.</returns>
     [CakeMethodAlias]
     public static IEnumerable<String> SFTPListAllFiles(this ICakeContext cakecontext, SFTPSettings settings,
         String remoteDirectory = ".")
@@ -32,6 +47,18 @@ public static class CakeSFTP
         }
     }
 
+    /// <summary>
+    /// Uploads a file to the SFTP server
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// SFTPUploadFile(settings, "./somefile.txt", "/uploads/somefile.txt");
+    /// </code>
+    /// </example>
+    /// <param name="cakecontext">The context.</param>
+    /// <param name="settings">The settings file for the SFTP server.</param>
+    /// <param name="localFilePath">The path to the local file you want to upload.</param>
+    /// <param name="remoteFilePath">The folder on the SFTP server where you want to upload the file, including the remote filename.</param>
     [CakeMethodAlias]
     public static void SFTPUploadFile(this ICakeContext cakecontext, SFTPSettings settings, string localFilePath,
         string remoteFilePath)
@@ -57,6 +84,18 @@ public static class CakeSFTP
         }
     }
 
+    /// <summary>
+    /// Downloads a file from the SFTP server
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// SFTPDownloadFile(settings, "./somefile.txt", "/uploads/somefile.txt");
+    /// </code>
+    /// </example>
+    /// <param name="cakecontext">The context.</param>
+    /// <param name="settings">The settings file for the SFTP server.</param>
+    /// <param name="localFilePath">The path to the local file you want to download.</param>
+    /// <param name="remoteFilePath">The folder on the SFTP server where you want to download the file, including the remote filename.</param>
     [CakeMethodAlias]
     public static void SFTPDownloadFile(this ICakeContext cakecontext, SFTPSettings settings, string remoteFilePath,
         string localFilePath)
