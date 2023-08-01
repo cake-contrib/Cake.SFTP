@@ -37,7 +37,7 @@ public static class CakeSFTP
         }
         catch
         {
-            cakecontext.Log.Write(Verbosity.Normal, LogLevel.Error, "Failed in listing files under [{remoteDirectory}]",
+            cakecontext.Log.Write(Verbosity.Normal, LogLevel.Error, "Failed in listing files under [{0}]",
                 remoteDirectory);
             return Array.Empty<String>();
         }
@@ -71,12 +71,12 @@ public static class CakeSFTP
             using var s = File.OpenRead(localFilePath);
             client.UploadFile(s, remoteFilePath);
             cakecontext.Log.Write(Verbosity.Normal, LogLevel.Information,
-                "Finished uploading the file [{localFilePath}] to [{remoteFilePath}]", localFilePath, remoteFilePath);
+                "Finished uploading the file [{0}] to [{1}]", localFilePath, remoteFilePath);
         }
         catch
         {
             cakecontext.Log.Write(Verbosity.Normal, LogLevel.Error,
-                "Failed uploading the file [{localFilePath}] to [{remoteFilePath}]", localFilePath, remoteFilePath);
+                "Failed uploading the file [{0}] to [{1}]", localFilePath, remoteFilePath);
         }
         finally
         {
@@ -108,13 +108,13 @@ public static class CakeSFTP
             using var s = File.Create(localFilePath);
             client.DownloadFile(remoteFilePath, s);
             cakecontext.Log.Write(Verbosity.Normal, LogLevel.Information,
-                "Finished downloading the file [{localFilePath}] from [{remoteFilePath}]", localFilePath,
+                "Finished downloading the file [{0}] from [{1}]", localFilePath,
                 remoteFilePath);
         }
         catch
         {
             cakecontext.Log.Write(Verbosity.Normal, LogLevel.Error,
-                "Failed downloading the file [{localFilePath}] from [{remoteFilePath}]", localFilePath, remoteFilePath);
+                "Failed downloading the file [{0}] from [{1}]", localFilePath, remoteFilePath);
         }
         finally
         {
@@ -122,6 +122,17 @@ public static class CakeSFTP
         }
     }
 
+    /// <summary>
+    /// Uploads a file to the SFTP server
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// SFTPUploadFile(settings, "./somefile.txt", "/uploads/somefile.txt");
+    /// </code>
+    /// </example>
+    /// <param name="cakecontext">The context.</param>
+    /// <param name="settings">The settings file for the SFTP server.</param>
+    /// <param name="remoteFilePath">The path to the file on the server you want to delete.</param>
     [CakeMethodAlias]
     public static void SFTPDeleteFile(this ICakeContext cakecontext, SFTPSettings settings, string remoteFilePath)
     {
@@ -131,12 +142,12 @@ public static class CakeSFTP
         {
             client.Connect();
             client.DeleteFile(remoteFilePath);
-            cakecontext.Log.Write(Verbosity.Normal, LogLevel.Information, "File [{remoteFilePath}] is deleted.",
+            cakecontext.Log.Write(Verbosity.Normal, LogLevel.Information, "File [{0}] is deleted.",
                 remoteFilePath);
         }
         catch
         {
-            cakecontext.Log.Write(Verbosity.Normal, LogLevel.Error, "Failed to delete the file [{remoteFilePath}]",
+            cakecontext.Log.Write(Verbosity.Normal, LogLevel.Error, "Failed to delete the file [{0}]",
                 remoteFilePath);
         }
         finally
@@ -145,6 +156,17 @@ public static class CakeSFTP
         }
     }
 
+    /// <summary>
+    /// Uploads a file to the SFTP server
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// SFTPUploadFile(settings, "./somefile.txt", "/uploads/somefile.txt");
+    /// </code>
+    /// </example>
+    /// <param name="cakecontext">The context.</param>
+    /// <param name="settings">The settings file for the SFTP server.</param>
+    /// <param name="remoteFilePaths">A list of paths to the files on the server you want to delete.</param>
     [CakeMethodAlias]
     public static void SFTPDeleteFiles(this ICakeContext cakecontext, SFTPSettings settings,
         IList<String> remoteFilePaths)
@@ -160,14 +182,14 @@ public static class CakeSFTP
                 try
                 {
                     client.DeleteFile(f);
-                    cakecontext.Log.Write(Verbosity.Normal, LogLevel.Information, "File [{remoteFilePath}] is deleted.",
+                    cakecontext.Log.Write(Verbosity.Normal, LogLevel.Information, "File [{0}] is deleted.",
                         f);
                 }
                 catch
 
                 {
                     cakecontext.Log.Write(Verbosity.Normal, LogLevel.Error,
-                        "Failed to delete the file [{remoteFilePath}]", f);
+                        "Failed to delete the file [{0}]", f);
                 }
             }
         }
