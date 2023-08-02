@@ -89,7 +89,7 @@ public static class CakeSFTP
     /// </summary>
     /// <example>
     /// <code>
-    /// SFTPDownloadFile(settings, "./somefile.txt", "/uploads/somefile.txt");
+    /// SFTPDownloadFile(settings, "/uploads/somefile.txt", "./somefile.txt");
     /// </code>
     /// </example>
     /// <param name="cakecontext">The context.</param>
@@ -123,11 +123,11 @@ public static class CakeSFTP
     }
 
     /// <summary>
-    /// Uploads a file to the SFTP server
+    /// Deletes a file on the SFTP server
     /// </summary>
     /// <example>
     /// <code>
-    /// SFTPUploadFile(settings, "./somefile.txt", "/uploads/somefile.txt");
+    /// SFTPDeleteFile(settings, "/uploads/somefile.txt");
     /// </code>
     /// </example>
     /// <param name="cakecontext">The context.</param>
@@ -157,11 +157,12 @@ public static class CakeSFTP
     }
 
     /// <summary>
-    /// Uploads a file to the SFTP server
+    /// Deletes files on the SFTP server
     /// </summary>
     /// <example>
     /// <code>
-    /// SFTPUploadFile(settings, "./somefile.txt", "/uploads/somefile.txt");
+    /// var aListOfRemoteFilePaths = new List<String>{"/uploads/somefileA.txt", "/uploads/somefileB.txt"};
+    /// SFTPDeleteFiles(settings, aListOfRemoteFilePaths);
     /// </code>
     /// </example>
     /// <param name="cakecontext">The context.</param>

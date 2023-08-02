@@ -5,16 +5,16 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <OutputType>Library</OutputType>
         <Nullable>enable</Nullable>
-        <Version>1.3.0</Version>
+        <Version>1.5.0</Version>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Jeroen Vandezande</Authors>
         <Copyright>Copyright © Jeroen Vandezande 2023</Copyright>
-        <Description>a plug-in for Cake Build that allows you to upload, download and delete files on an SFT server.</Description>
+        <Description>a plug-in for Cake Build that allows you to upload, download and delete files on an SFTP server.</Description>
         <PackageProjectUrl>https://github.com/JeroenVandezande/Cake.SFTP</PackageProjectUrl>
         <RepositoryUrl>https://github.com/JeroenVandezande/Cake.SFTP</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>cake-addin Cake Script Build SFTP</PackageTags>
-        <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+        <PackageReleaseNotes>Fixed XML docs</PackageReleaseNotes>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <IncludeSymbols>True</IncludeSymbols>

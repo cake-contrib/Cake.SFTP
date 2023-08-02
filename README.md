@@ -1,6 +1,8 @@
 # Cake.SFTP
 A Cake add-on to upload/download/list/delete files on a SFTP Server
 
+This add-on uses the excellent SSH.NET package (see https://github.com/sshnet/SSH.NET/) 
+
 ## Usage
 
 ### Include an Add-In directive
