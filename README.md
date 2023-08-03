@@ -1,5 +1,6 @@
 # Cake.SFTP
-![Cake](./cakebadge.svg)
+
+[<img src="./Cake.SFTP/Cake.SFTP/cakebadge.svg" width="100">](https://cakebuild.net/)
 
 [![Version](https://img.shields.io/nuget/vpre/Cake.SFTP.svg)](https://www.nuget.org/packages/Cake.SFTP)
 [![NuGet download count](https://img.shields.io/nuget/dt/Cake.SFTP.svg)](https://www.nuget.org/packages/Cake.SFTP)
