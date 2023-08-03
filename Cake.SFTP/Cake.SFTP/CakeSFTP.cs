@@ -17,7 +17,7 @@ public static class CakeSFTP
     /// </summary>
     /// <example>
     /// <code>
-    /// var remotefiles = SFTPListAllFiles(settings, "uploads/current");
+    /// var remotefiles = SFTPListAllFiles(settings, &quot;uploads/current&quot;);
     /// </code>
     /// </example>
     /// <param name="cakecontext">The context.</param>
@@ -39,7 +39,7 @@ public static class CakeSFTP
         {
             cakecontext.Log.Write(Verbosity.Normal, LogLevel.Error, "Failed in listing files under [{0}]",
                 remoteDirectory);
-            return Array.Empty<String>();
+            throw;
         }
         finally
         {
@@ -52,7 +52,14 @@ public static class CakeSFTP
     /// </summary>
     /// <example>
     /// <code>
-    /// SFTPUploadFile(settings, "./somefile.txt", "/uploads/somefile.txt");
+    ///var settings = new SFTPSettings
+    ///{
+    ///    UserName = &quot;someUserName&quot;,
+    ///    Password = &quot;somePassword&quot;,
+    ///    Host = &quot;192.168.1.100&quot;,
+    ///    Port = 22
+    ///};
+    ///SFTPUploadFile(settings, &quot;./somefile.txt&quot;, &quot;/uploads/somefile.txt&quot;);
     /// </code>
     /// </example>
     /// <param name="cakecontext">The context.</param>
@@ -77,6 +84,7 @@ public static class CakeSFTP
         {
             cakecontext.Log.Write(Verbosity.Normal, LogLevel.Error,
                 "Failed uploading the file [{0}] to [{1}]", localFilePath, remoteFilePath);
+            throw;
         }
         finally
         {
@@ -89,7 +97,7 @@ public static class CakeSFTP
     /// </summary>
     /// <example>
     /// <code>
-    /// SFTPDownloadFile(settings, "/uploads/somefile.txt", "./somefile.txt");
+    /// SFTPDownloadFile(settings, &quot;/uploads/somefile.txt&quot;, &quot;./somefile.txt&quot;);
     /// </code>
     /// </example>
     /// <param name="cakecontext">The context.</param>
@@ -115,6 +123,7 @@ public static class CakeSFTP
         {
             cakecontext.Log.Write(Verbosity.Normal, LogLevel.Error,
                 "Failed downloading the file [{0}] from [{1}]", localFilePath, remoteFilePath);
+            throw;
         }
         finally
         {
@@ -127,7 +136,7 @@ public static class CakeSFTP
     /// </summary>
     /// <example>
     /// <code>
-    /// SFTPDeleteFile(settings, "/uploads/somefile.txt");
+    /// SFTPDeleteFile(settings, &quot;/uploads/somefile.txt&quot;);
     /// </code>
     /// </example>
     /// <param name="cakecontext">The context.</param>
@@ -149,6 +158,7 @@ public static class CakeSFTP
         {
             cakecontext.Log.Write(Verbosity.Normal, LogLevel.Error, "Failed to delete the file [{0}]",
                 remoteFilePath);
+            throw;
         }
         finally
         {
@@ -161,7 +171,7 @@ public static class CakeSFTP
     /// </summary>
     /// <example>
     /// <code>
-    /// var aListOfRemoteFilePaths = new List<String>{"/uploads/somefileA.txt", "/uploads/somefileB.txt"};
+    /// var aListOfRemoteFilePaths = new List&lt;String&gt;{&quot;/uploads/somefileA.txt&quot;, &quot;/uploads/somefileB.txt&quot;};
     /// SFTPDeleteFiles(settings, aListOfRemoteFilePaths);
     /// </code>
     /// </example>
@@ -183,14 +193,14 @@ public static class CakeSFTP
                 try
                 {
                     client.DeleteFile(f);
-                    cakecontext.Log.Write(Verbosity.Normal, LogLevel.Information, "File [{0}] is deleted.",
-                        f);
+                    cakecontext.Log.Write(Verbosity.Normal, LogLevel.Information, "File [{0}] is deleted.", f);
                 }
                 catch
 
                 {
                     cakecontext.Log.Write(Verbosity.Normal, LogLevel.Error,
                         "Failed to delete the file [{0}]", f);
+                    throw;
                 }
             }
         }
