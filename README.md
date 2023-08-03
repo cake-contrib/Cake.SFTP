@@ -1,4 +1,5 @@
 # Cake.SFTP
+![Cake](./cakebadge.svg)
 
 [![Version](https://img.shields.io/nuget/vpre/Cake.SFTP.svg)](https://www.nuget.org/packages/Cake.SFTP)
 [![NuGet download count](https://img.shields.io/nuget/dt/Cake.SFTP.svg)](https://www.nuget.org/packages/Cake.SFTP)
