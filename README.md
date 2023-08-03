@@ -2,6 +2,7 @@
 
 [![Version](https://img.shields.io/nuget/vpre/Cake.SFTP.svg)](https://www.nuget.org/packages/Cake.SFTP)
 [![NuGet download count](https://img.shields.io/nuget/dt/Cake.SFTP.svg)](https://www.nuget.org/packages/Cake.SFTP)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A Cake add-on to upload/download/list/delete files on a SFTP Server
 
