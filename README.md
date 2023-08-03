@@ -1,4 +1,8 @@
 # Cake.SFTP
+
+[![Version](https://img.shields.io/nuget/vpre/Cake.SFTP.svg)](https://www.nuget.org/packages/Cake.SFTP)
+[![NuGet download count](https://img.shields.io/nuget/dt/Cake.SFTP.svg)](https://www.nuget.org/packages/Cake.SFTP)
+
 A Cake add-on to upload/download/list/delete files on a SFTP Server
 
 This add-on uses the excellent SSH.NET package (see https://github.com/sshnet/SSH.NET/) 
