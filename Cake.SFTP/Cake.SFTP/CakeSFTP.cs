@@ -1,6 +1,7 @@
 using Cake.Core;
 using Cake.Core.Annotations;
 using System.Linq;
+using System.Text;
 using Cake.Core.Diagnostics;
 using Renci.SshNet;
 
@@ -28,8 +29,7 @@ public static class CakeSFTP
     public static IEnumerable<String> SFTPListAllFiles(this ICakeContext cakecontext, SFTPSettings settings,
         String remoteDirectory = ".")
     {
-        using var client = new SftpClient(settings.Host, settings.Port == 0 ? 22 : settings.Port, settings.UserName,
-            settings.Password);
+        using var client = new SftpClient(_CreateConnectionInfo(settings));
         try
         {
             client.Connect();
@@ -70,8 +70,7 @@ public static class CakeSFTP
     public static void SFTPUploadFile(this ICakeContext cakecontext, SFTPSettings settings, string localFilePath,
         string remoteFilePath)
     {
-        using var client = new SftpClient(settings.Host, settings.Port == 0 ? 22 : settings.Port, settings.UserName,
-            settings.Password);
+        using var client = new SftpClient(_CreateConnectionInfo(settings));
         try
         {
             client.Connect();
@@ -108,8 +107,7 @@ public static class CakeSFTP
     public static void SFTPDownloadFile(this ICakeContext cakecontext, SFTPSettings settings, string remoteFilePath,
         string localFilePath)
     {
-        using var client = new SftpClient(settings.Host, settings.Port == 0 ? 22 : settings.Port, settings.UserName,
-            settings.Password);
+        using var client = new SftpClient(_CreateConnectionInfo(settings));
         try
         {
             client.Connect();
@@ -145,8 +143,7 @@ public static class CakeSFTP
     [CakeMethodAlias]
     public static void SFTPDeleteFile(this ICakeContext cakecontext, SFTPSettings settings, string remoteFilePath)
     {
-        using var client = new SftpClient(settings.Host, settings.Port == 0 ? 22 : settings.Port, settings.UserName,
-            settings.Password);
+        using var client = new SftpClient(_CreateConnectionInfo(settings));
         try
         {
             client.Connect();
@@ -182,8 +179,7 @@ public static class CakeSFTP
     public static void SFTPDeleteFiles(this ICakeContext cakecontext, SFTPSettings settings,
         IEnumerable<String> remoteFilePaths)
     {
-        using var client = new SftpClient(settings.Host, settings.Port == 0 ? 22 : settings.Port, settings.UserName,
-            settings.Password);
+        using var client = new SftpClient(_CreateConnectionInfo(settings));
         try
         {
             client.Connect();
@@ -207,6 +203,32 @@ public static class CakeSFTP
         finally
         {
             client.Disconnect();
+        }
+    }
+
+    private static ConnectionInfo _CreateConnectionInfo(SFTPSettings settings)
+    {
+        if (!String.IsNullOrEmpty(settings.KeyFile))
+        {
+            var ci = new ConnectionInfo(settings.Host, settings.Port, settings.UserName,
+                new PrivateKeyAuthenticationMethod(settings.UserName, new PrivateKeyFile(settings.KeyFile)));
+            return ci;
+        }
+        else
+        {
+            if (!String.IsNullOrEmpty(settings.Key))
+            {
+                using var keyStream = new MemoryStream(Encoding.UTF8.GetBytes(settings.Key));
+                var ci = new ConnectionInfo(settings.Host, settings.Port, settings.UserName,
+                    new PrivateKeyAuthenticationMethod(settings.UserName, new PrivateKeyFile(keyStream)));
+                return ci;
+            }
+            else
+            {
+                var ci = new ConnectionInfo(settings.Host, settings.Port, settings.UserName,
+                    new PasswordAuthenticationMethod(settings.UserName, settings.Password));
+                return ci;
+            }
         }
     }
 }
