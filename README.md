@@ -27,3 +27,6 @@ Task("UploadToSFTP")
     SFTPUploadFile(settings, "somefile.txt", "uploads/somefile.txt");
 });
 ```
+### See Cake Add-On page for more info
+
+https://cakebuild.net/extensions/cake-sftp/
