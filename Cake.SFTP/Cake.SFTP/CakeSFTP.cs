@@ -180,7 +180,7 @@ public static class CakeSFTP
     /// <param name="remoteFilePaths">A list of paths to the files on the server you want to delete.</param>
     [CakeMethodAlias]
     public static void SFTPDeleteFiles(this ICakeContext cakecontext, SFTPSettings settings,
-        IList<String> remoteFilePaths)
+        IEnumerable<String> remoteFilePaths)
     {
         using var client = new SftpClient(settings.Host, settings.Port == 0 ? 22 : settings.Port, settings.UserName,
             settings.Password);
