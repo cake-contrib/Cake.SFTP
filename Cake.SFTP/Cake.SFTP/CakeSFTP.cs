@@ -22,7 +22,7 @@ public static class CakeSFTP
     /// </code>
     /// </example>
     /// <param name="cakecontext">The context.</param>
-    /// <param name="settings">The settings file for the SFTP server.</param>
+    /// <param name="settings">The settings for the SFTP server.</param>
     /// <param name="remoteDirectory">The folder on the SFTP server where you want to get the contents from.</param>
     /// <returns>A list of the files on the server.</returns>
     [CakeMethodAlias]
@@ -63,7 +63,7 @@ public static class CakeSFTP
     /// </code>
     /// </example>
     /// <param name="cakecontext">The context.</param>
-    /// <param name="settings">The settings file for the SFTP server.</param>
+    /// <param name="settings">The settings for the SFTP server.</param>
     /// <param name="localFilePath">The path to the local file you want to upload.</param>
     /// <param name="remoteFilePath">The folder on the SFTP server where you want to upload the file, including the remote filename.</param>
     [CakeMethodAlias]
@@ -100,7 +100,7 @@ public static class CakeSFTP
     /// </code>
     /// </example>
     /// <param name="cakecontext">The context.</param>
-    /// <param name="settings">The settings file for the SFTP server.</param>
+    /// <param name="settings">The settings for the SFTP server.</param>
     /// <param name="localFilePath">The path to the local file you want to download.</param>
     /// <param name="remoteFilePath">The folder on the SFTP server where you want to download the file, including the remote filename.</param>
     [CakeMethodAlias]
@@ -128,6 +128,48 @@ public static class CakeSFTP
             client.Disconnect();
         }
     }
+    
+    /// <summary>
+    /// Downloads a file from the SFTP server
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// SFTPDownloadFiles(settings, aListOfFilePaths);
+    /// </code>
+    /// </example>
+    /// <param name="cakecontext">The context.</param>
+    /// <param name="settings">The settings for the SFTP server.</param>
+    /// <param name="paths">a list of paths to download</param>
+    [CakeMethodAlias]
+    public static void SFTPDownloadFiles(this ICakeContext cakecontext, SFTPSettings settings, IEnumerable<SFTPFilePair> paths)
+    {
+        using var client = new SftpClient(_CreateConnectionInfo(settings));
+        try
+        {
+            client.Connect();
+
+            foreach (var f in paths)
+            {
+                try
+                {
+                    using var s = File.Create(f.LocalFilePath);
+                    client.DownloadFile(f.RemoteFilePath, s);
+                    cakecontext.Log.Write(Verbosity.Normal, LogLevel.Information, "File [{0}] is downloaded.", f.RemoteFilePath);
+                }
+                catch
+
+                {
+                    cakecontext.Log.Write(Verbosity.Normal, LogLevel.Error,
+                        "Failed to download the file [{0}]", f.RemoteFilePath);
+                    throw;
+                }
+            }
+        }
+        finally
+        {
+            client.Disconnect();
+        }
+    }
 
     /// <summary>
     /// Deletes a file on the SFTP server
@@ -138,7 +180,7 @@ public static class CakeSFTP
     /// </code>
     /// </example>
     /// <param name="cakecontext">The context.</param>
-    /// <param name="settings">The settings file for the SFTP server.</param>
+    /// <param name="settings">The settings for the SFTP server.</param>
     /// <param name="remoteFilePath">The path to the file on the server you want to delete.</param>
     [CakeMethodAlias]
     public static void SFTPDeleteFile(this ICakeContext cakecontext, SFTPSettings settings, string remoteFilePath)
@@ -173,7 +215,7 @@ public static class CakeSFTP
     /// </code>
     /// </example>
     /// <param name="cakecontext">The context.</param>
-    /// <param name="settings">The settings file for the SFTP server.</param>
+    /// <param name="settings">The settings for the SFTP server.</param>
     /// <param name="remoteFilePaths">A list of paths to the files on the server you want to delete.</param>
     [CakeMethodAlias]
     public static void SFTPDeleteFiles(this ICakeContext cakecontext, SFTPSettings settings,
