@@ -1,20 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+        <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <OutputType>Library</OutputType>
         <Nullable>enable</Nullable>
-        <Version>1.6.0</Version>
+        <Version>1.7.0</Version>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Jeroen Vandezande</Authors>
-        <Copyright>Copyright © Jeroen Vandezande 2023</Copyright>
+        <Copyright>Copyright © Jeroen Vandezande 2026</Copyright>
         <Description>a plug-in for Cake Build that allows you to upload, download and delete files on an SFTP server.</Description>
         <PackageProjectUrl>https://cakebuild.net/extensions/cake-sftp/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/cake-contrib/Cake.SFTP</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>cake-addin Cake Script Build SFTP</PackageTags>
-        <PackageReleaseNotes>Fixed XML docs</PackageReleaseNotes>
+        <PackageReleaseNotes>Upgraded dependencies</PackageReleaseNotes>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <IncludeSymbols>True</IncludeSymbols>
@@ -24,9 +24,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Cake.Core" Version="3.0.0" PrivateAssets="All" />
+        <PackageReference Include="Cake.Core" Version="4.0.0" PrivateAssets="All" />
         <PackageReference Include="Cake.Common" Version="3.0.0" PrivateAssets="All" />
-      <PackageReference Include="SSH.NET" Version="2020.0.2" />
+      <PackageReference Include="SSH.NET" Version="2025.1.0" />
     </ItemGroup>
 
     <PropertyGroup>

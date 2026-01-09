@@ -48,6 +48,35 @@ public static class CakeSFTP
     }
 
     /// <summary>
+    /// Creates a folder on the SFTP server
+    /// </summary>
+    /// <param name="cakecontext">The context.</param>
+    /// <param name="settings">The settings for the SFTP server.</param>
+    /// <param name="remoteDirectoryPath">The folder on the SFTP server that you want to create.</param>
+    [CakeMethodAlias]
+    public static void SFTPCreateRemoteDirectory(this ICakeContext cakecontext, SFTPSettings settings, string remoteDirectoryPath)
+    {
+        using var client = new SftpClient(_CreateConnectionInfo(settings));
+        try
+        {
+            client.Connect();
+            client.CreateDirectory(remoteDirectoryPath);
+            cakecontext.Log.Write(Verbosity.Normal, LogLevel.Information,
+                "Finished creating the folder [{0}] on server", remoteDirectoryPath);
+        }
+        catch
+        {
+            cakecontext.Log.Write(Verbosity.Normal, LogLevel.Error,
+                "Failed creating the folder [{0}] on server", remoteDirectoryPath);
+            throw;
+        }
+        finally
+        {
+            client.Disconnect();
+        }
+    }
+    
+    /// <summary>
     /// Uploads a file to the SFTP server
     /// </summary>
     /// <example>
